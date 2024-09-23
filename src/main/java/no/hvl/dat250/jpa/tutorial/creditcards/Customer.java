@@ -1,8 +1,6 @@
 package no.hvl.dat250.jpa.tutorial.creditcards;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -17,7 +15,7 @@ public class Customer {
     @ManyToMany
     private Set<Address> addresses;
 
-    @OneToMany
+    @ManyToMany
     private Set<CreditCard> creditCards;
 
     public void setName(String name) {

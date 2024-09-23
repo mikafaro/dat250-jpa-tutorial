@@ -12,7 +12,7 @@ public class Bank {
     private Long id;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "bank")
     private Set<CreditCard> ownedCards;
 
     public Long getId() {

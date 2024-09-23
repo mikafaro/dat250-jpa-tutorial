@@ -8,6 +8,7 @@ public class CreditCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Integer number;
     private Integer creditLimit;
     private Integer balance;
