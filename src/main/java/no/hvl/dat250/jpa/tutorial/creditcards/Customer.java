@@ -3,6 +3,7 @@ package no.hvl.dat250.jpa.tutorial.creditcards;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -14,10 +15,14 @@ public class Customer {
     private String name;
 
     @ManyToMany
-    private List<Address> addresses;
+    private Set<Address> addresses;
 
     @OneToMany
-    private List<CreditCard> creditCards;
+    private Set<CreditCard> creditCards;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -29,5 +34,13 @@ public class Customer {
 
     public Collection<CreditCard> getCreditCards() {
         return creditCards;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public void setCreditCards(Set<CreditCard> creditCards) {
+        this.creditCards = creditCards;
     }
 }

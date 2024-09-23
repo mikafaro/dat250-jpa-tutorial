@@ -37,4 +37,24 @@ public class CreditCard {
     public Bank getOwningBank() {
         return bank;
     }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public void setCreditLimit(Integer creditLimit) {
+        this.creditLimit = creditLimit;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    public void setPincode(Pincode pincode) {
+        this.pincode = pincode;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
 }
