@@ -48,5 +48,29 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO jpa_client;
 
 Now I could run the tests successfully and the first experiment was complete.
 
-## Task 2 - Building you own dockerized application
+## Task 2 - Building your own dockerized application
 
+Using a Dockerfile I orchestrated a multi-stage build for my docker application, where
+the application was first built using a gradle image with jdk21 and then the resulting jar
+was copied into a slimmer alpine image.
+
+```Dockerfile
+FROM gradle:8.10.2-jdk21 AS builder
+WORKDIR /app
+COPY . /app/
+RUN gradle bootJar
+
+FROM eclipse-temurin:21 AS runner
+RUN useradd me
+WORKDIR /app
+COPY --from=builder /app/build/libs/pollapp-0.0.1-SNAPSHOT.jar /app/pollapp.jar
+RUN chown -R me:me /app
+USER me
+EXPOSE 8080
+CMD ["java", "-jar", "/app/pollapp.jar"]
+```
+
+I had a little issue with the the build process in Intellij as I did not have the buildx component.
+I ended up just using the deprecated build function in the terminal, which worked fine for this purpose.
+
+After the build I could run the image using `docker run -d -p 8080:8080 {{image code}}` and the REST API worked as expected.
